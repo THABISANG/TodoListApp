@@ -1,0 +1,56 @@
+<p>Welcome!</p>
+<div class="flex justify-content-center align-items-center min-h-screen">
+    <p-card header="Signup" [style]="{width: '400px'}">
+        <form [formGroup]="signupForm" (ngSubmit)="onSignup()">
+            <div class="field">
+                <label for="fullName">Full Name</label>
+                <input pInputText
+                    class="w-full"
+                    id="fullName"
+                    formControlName="fullName"/>
+                <div *NgIf="signupForm.get('fullName')?.invalid && (signupForm.get('fullName')?.dirty || signupForm.get('fullName')?.touched)">
+                    <small class="block p-error">Full name is required</small>
+                </div>
+            </div>
+            
+            <div class="field">
+                <label for="email">Email</label>
+                <input pInputText
+                    class="w-full"
+                    id="email"
+                    formControlName="email"/>
+            </div>
+
+            <div class="field">
+                <label for="password">Password</label>
+                <p-password 
+                    formControlName="password"
+                    [feedback]="false"
+                    [toggleMask]="true"
+                    inputId="password"
+                    inputStyleClass="w-full"
+                    styleClass="w-full">
+                </p-password>
+            </div>
+            
+            <div class="field">
+                <label for="confirmPassword">Confirm Password</label>
+                <p-password 
+                    formControlName="confirmPassword"
+                    [feedback]="false"
+                    [toggleMask]="true"
+                    inputId="confirmPassword"
+                    inputStyleClass="w-full"
+                    styleClass="w-full">
+                </p-password>
+            </div>
+            
+            <button 
+               type="submit"
+               class="w-full"
+               [disabled]="signupForm.invalid">
+               Signup
+            </button>
+        </form>
+    </p-card>
+</div>
